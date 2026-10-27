@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-100 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=little -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T07 테스트패턴 출력 비교  <- 01_input/testvector/tv_t07_functional.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">09 01</spi_write>               <!-- 00001 L9 TPG_MODE -->
+  <spi_write count="2" radix="16">08 03</spi_write>               <!-- 00002 L10 DISP_CTRL -->
+  <!-- frame_check 'colorbar' : DSO capture / compare  00003 L11 -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00004 L12 reset -->
+  <spi_write count="2" radix="16">09 02</spi_write>               <!-- 00005 L13 TPG_MODE -->
+  <spi_write count="2" radix="16">0A FF</spi_write>               <!-- 00006 L14 FG_R -->
+  <spi_write count="2" radix="16">0B 00</spi_write>               <!-- 00007 L15 FG_G -->
+  <spi_write count="2" radix="16">0C 00</spi_write>               <!-- 00008 L16 FG_B -->
+  <spi_write count="2" radix="16">08 03</spi_write>               <!-- 00009 L17 DISP_CTRL -->
+  <!-- frame_check 'ramp_red' : DSO capture / compare  00010 L18 -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00011 L19 reset -->
+  <spi_write count="2" radix="16">09 03</spi_write>               <!-- 00012 L20 TPG_MODE -->
+  <spi_write count="2" radix="16">0D 02</spi_write>               <!-- 00013 L21 CHECKER_SZ -->
+  <spi_write count="2" radix="16">0A 20</spi_write>               <!-- 00014 L22 FG_R -->
+  <spi_write count="2" radix="16">0B C0</spi_write>               <!-- 00015 L23 FG_G -->
+  <spi_write count="2" radix="16">0C FF</spi_write>               <!-- 00016 L24 FG_B -->
+  <spi_write count="2" radix="16">08 03</spi_write>               <!-- 00017 L25 DISP_CTRL -->
+  <!-- frame_check 'checker_4px' : DSO capture / compare  00018 L26 -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00019 L27 reset -->
+  <spi_write count="2" radix="16">09 01</spi_write>               <!-- 00020 L28 TPG_MODE -->
+  <spi_write count="2" radix="16">0E 03</spi_write>               <!-- 00021 L29 PIX_CTRL -->
+  <spi_write count="2" radix="16">08 03</spi_write>               <!-- 00022 L30 DISP_CTRL -->
+  <!-- frame_check 'colorbar_swap_inv' : DSO capture / compare  00023 L31 -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00024 L32 reset -->
+  <spi_write count="2" radix="16">09 00</spi_write>               <!-- 00025 L33 TPG_MODE -->
+  <spi_write count="2" radix="16">04 60</spi_write>               <!-- 00026 L34 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 00</spi_write>               <!-- 00027 L34 H_ACTIVE -->
+  <spi_write count="2" radix="16">06 36</spi_write>               <!-- 00028 L35 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 00</spi_write>               <!-- 00029 L35 V_ACTIVE -->
+  <spi_write count="2" radix="16">0A 40</spi_write>               <!-- 00030 L36 FG_R -->
+  <spi_write count="2" radix="16">0B 80</spi_write>               <!-- 00031 L37 FG_G -->
+  <spi_write count="2" radix="16">0C C0</spi_write>               <!-- 00032 L38 FG_B -->
+  <spi_write count="2" radix="16">08 03</spi_write>               <!-- 00033 L39 DISP_CTRL -->
+  <!-- frame_check 'solid_96x54' : DSO capture / compare  00034 L40 -->
+</aardvark>

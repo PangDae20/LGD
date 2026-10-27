@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-200 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=big -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T02 리셋값 확인  <- 01_input/testvector/tv_t02_reset_check.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">80 00</spi_write>               <!-- 00001 L9 CHIP_ID reset  expect 0xD2 mask 0xFF -->
+  <spi_write count="2" radix="16">81 00</spi_write>               <!-- 00002 L9 CHIP_ID reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">82 00</spi_write>               <!-- 00003 L10 REV_ID reset  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">83 00</spi_write>               <!-- 00004 L11 STATUS reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00005 L12 H_ACTIVE reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00006 L12 H_ACTIVE reset  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00007 L13 V_ACTIVE reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00008 L13 V_ACTIVE reset  expect 0x30 mask 0xFF -->
+  <spi_write count="2" radix="16">88 00</spi_write>               <!-- 00009 L14 DISP_CTRL reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00010 L15 TPG_MODE reset  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00011 L16 FG_R reset  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00012 L17 FG_G reset  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00013 L18 FG_B reset  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">8D 00</spi_write>               <!-- 00014 L19 CHECKER_SZ reset  expect 0x03 mask 0xFF -->
+  <spi_write count="2" radix="16">8E 00</spi_write>               <!-- 00015 L20 PIX_CTRL reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00016 L21 SCRATCH reset  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00017 L21 SCRATCH reset  expect 0x00 mask 0xFF -->
+</aardvark>

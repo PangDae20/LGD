@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-100 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=big -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T04 Walking-1  <- 01_input/testvector/tv_t04_walking_one.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00001 L9 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 01</spi_write>               <!-- 00002 L9 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00003 L10 H_ACTIVE bit0  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00004 L10 H_ACTIVE bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00005 L11 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 02</spi_write>               <!-- 00006 L11 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00007 L12 H_ACTIVE bit1  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00008 L12 H_ACTIVE bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00009 L13 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 04</spi_write>               <!-- 00010 L13 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00011 L14 H_ACTIVE bit2  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00012 L14 H_ACTIVE bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00013 L15 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 08</spi_write>               <!-- 00014 L15 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00015 L16 H_ACTIVE bit3  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00016 L16 H_ACTIVE bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00017 L17 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 10</spi_write>               <!-- 00018 L17 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00019 L18 H_ACTIVE bit4  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00020 L18 H_ACTIVE bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00021 L19 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 20</spi_write>               <!-- 00022 L19 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00023 L20 H_ACTIVE bit5  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00024 L20 H_ACTIVE bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00025 L21 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 40</spi_write>               <!-- 00026 L21 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00027 L22 H_ACTIVE bit6  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00028 L22 H_ACTIVE bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">04 00</spi_write>               <!-- 00029 L23 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 80</spi_write>               <!-- 00030 L23 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00031 L24 H_ACTIVE bit7  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00032 L24 H_ACTIVE bit7  expect 0x80 mask 0xFF -->
+  <spi_write count="2" radix="16">04 01</spi_write>               <!-- 00033 L25 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 00</spi_write>               <!-- 00034 L25 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00035 L26 H_ACTIVE bit8  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00036 L26 H_ACTIVE bit8  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">04 02</spi_write>               <!-- 00037 L27 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 00</spi_write>               <!-- 00038 L27 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00039 L28 H_ACTIVE bit9  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00040 L28 H_ACTIVE bit9  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">04 04</spi_write>               <!-- 00041 L29 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 00</spi_write>               <!-- 00042 L29 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00043 L30 H_ACTIVE bit10  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00044 L30 H_ACTIVE bit10  expect 0x00 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00045 L31 reset -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00046 L32 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 01</spi_write>               <!-- 00047 L32 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00048 L33 V_ACTIVE bit0  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00049 L33 V_ACTIVE bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00050 L34 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 02</spi_write>               <!-- 00051 L34 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00052 L35 V_ACTIVE bit1  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00053 L35 V_ACTIVE bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00054 L36 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 04</spi_write>               <!-- 00055 L36 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00056 L37 V_ACTIVE bit2  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00057 L37 V_ACTIVE bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00058 L38 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 08</spi_write>               <!-- 00059 L38 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00060 L39 V_ACTIVE bit3  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00061 L39 V_ACTIVE bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00062 L40 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 10</spi_write>               <!-- 00063 L40 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00064 L41 V_ACTIVE bit4  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00065 L41 V_ACTIVE bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00066 L42 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 20</spi_write>               <!-- 00067 L42 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00068 L43 V_ACTIVE bit5  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00069 L43 V_ACTIVE bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00070 L44 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 40</spi_write>               <!-- 00071 L44 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00072 L45 V_ACTIVE bit6  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00073 L45 V_ACTIVE bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">06 00</spi_write>               <!-- 00074 L46 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 80</spi_write>               <!-- 00075 L46 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00076 L47 V_ACTIVE bit7  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00077 L47 V_ACTIVE bit7  expect 0x80 mask 0xFF -->
+  <spi_write count="2" radix="16">06 01</spi_write>               <!-- 00078 L48 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 00</spi_write>               <!-- 00079 L48 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00080 L49 V_ACTIVE bit8  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00081 L49 V_ACTIVE bit8  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">06 02</spi_write>               <!-- 00082 L50 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 00</spi_write>               <!-- 00083 L50 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00084 L51 V_ACTIVE bit9  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00085 L51 V_ACTIVE bit9  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">06 04</spi_write>               <!-- 00086 L52 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 00</spi_write>               <!-- 00087 L52 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00088 L53 V_ACTIVE bit10  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00089 L53 V_ACTIVE bit10  expect 0x00 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00090 L54 reset -->
+  <spi_write count="2" radix="16">08 01</spi_write>               <!-- 00091 L55 DISP_CTRL -->
+  <spi_write count="2" radix="16">88 00</spi_write>               <!-- 00092 L56 DISP_CTRL bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">08 02</spi_write>               <!-- 00093 L57 DISP_CTRL -->
+  <spi_write count="2" radix="16">88 00</spi_write>               <!-- 00094 L58 DISP_CTRL bit1  expect 0x02 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00095 L59 reset -->
+  <spi_write count="2" radix="16">09 01</spi_write>               <!-- 00096 L60 TPG_MODE -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00097 L61 TPG_MODE bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">09 02</spi_write>               <!-- 00098 L62 TPG_MODE -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00099 L63 TPG_MODE bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">09 04</spi_write>               <!-- 00100 L64 TPG_MODE -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00101 L65 TPG_MODE bit2  expect 0x04 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00102 L66 reset -->
+  <spi_write count="2" radix="16">0A 01</spi_write>               <!-- 00103 L67 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00104 L68 FG_R bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 02</spi_write>               <!-- 00105 L69 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00106 L70 FG_R bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 04</spi_write>               <!-- 00107 L71 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00108 L72 FG_R bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 08</spi_write>               <!-- 00109 L73 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00110 L74 FG_R bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 10</spi_write>               <!-- 00111 L75 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00112 L76 FG_R bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 20</spi_write>               <!-- 00113 L77 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00114 L78 FG_R bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 40</spi_write>               <!-- 00115 L79 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00116 L80 FG_R bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 80</spi_write>               <!-- 00117 L81 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00118 L82 FG_R bit7  expect 0x80 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00119 L83 reset -->
+  <spi_write count="2" radix="16">0B 01</spi_write>               <!-- 00120 L84 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00121 L85 FG_G bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 02</spi_write>               <!-- 00122 L86 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00123 L87 FG_G bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 04</spi_write>               <!-- 00124 L88 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00125 L89 FG_G bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 08</spi_write>               <!-- 00126 L90 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00127 L91 FG_G bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 10</spi_write>               <!-- 00128 L92 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00129 L93 FG_G bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 20</spi_write>               <!-- 00130 L94 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00131 L95 FG_G bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 40</spi_write>               <!-- 00132 L96 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00133 L97 FG_G bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">0B 80</spi_write>               <!-- 00134 L98 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00135 L99 FG_G bit7  expect 0x80 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00136 L100 reset -->
+  <spi_write count="2" radix="16">0C 01</spi_write>               <!-- 00137 L101 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00138 L102 FG_B bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 02</spi_write>               <!-- 00139 L103 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00140 L104 FG_B bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 04</spi_write>               <!-- 00141 L105 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00142 L106 FG_B bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 08</spi_write>               <!-- 00143 L107 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00144 L108 FG_B bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 10</spi_write>               <!-- 00145 L109 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00146 L110 FG_B bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 20</spi_write>               <!-- 00147 L111 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00148 L112 FG_B bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 40</spi_write>               <!-- 00149 L113 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00150 L114 FG_B bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 80</spi_write>               <!-- 00151 L115 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00152 L116 FG_B bit7  expect 0x80 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00153 L117 reset -->
+  <spi_write count="2" radix="16">0D 01</spi_write>               <!-- 00154 L118 CHECKER_SZ -->
+  <spi_write count="2" radix="16">8D 00</spi_write>               <!-- 00155 L119 CHECKER_SZ bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">0D 02</spi_write>               <!-- 00156 L120 CHECKER_SZ -->
+  <spi_write count="2" radix="16">8D 00</spi_write>               <!-- 00157 L121 CHECKER_SZ bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">0D 04</spi_write>               <!-- 00158 L122 CHECKER_SZ -->
+  <spi_write count="2" radix="16">8D 00</spi_write>               <!-- 00159 L123 CHECKER_SZ bit2  expect 0x04 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00160 L124 reset -->
+  <spi_write count="2" radix="16">0E 01</spi_write>               <!-- 00161 L125 PIX_CTRL -->
+  <spi_write count="2" radix="16">8E 00</spi_write>               <!-- 00162 L126 PIX_CTRL bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">0E 02</spi_write>               <!-- 00163 L127 PIX_CTRL -->
+  <spi_write count="2" radix="16">8E 00</spi_write>               <!-- 00164 L128 PIX_CTRL bit1  expect 0x02 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00165 L129 reset -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00166 L130 SCRATCH -->
+  <spi_write count="2" radix="16">11 01</spi_write>               <!-- 00167 L130 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00168 L131 SCRATCH bit0  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00169 L131 SCRATCH bit0  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00170 L132 SCRATCH -->
+  <spi_write count="2" radix="16">11 02</spi_write>               <!-- 00171 L132 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00172 L133 SCRATCH bit1  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00173 L133 SCRATCH bit1  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00174 L134 SCRATCH -->
+  <spi_write count="2" radix="16">11 04</spi_write>               <!-- 00175 L134 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00176 L135 SCRATCH bit2  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00177 L135 SCRATCH bit2  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00178 L136 SCRATCH -->
+  <spi_write count="2" radix="16">11 08</spi_write>               <!-- 00179 L136 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00180 L137 SCRATCH bit3  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00181 L137 SCRATCH bit3  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00182 L138 SCRATCH -->
+  <spi_write count="2" radix="16">11 10</spi_write>               <!-- 00183 L138 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00184 L139 SCRATCH bit4  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00185 L139 SCRATCH bit4  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00186 L140 SCRATCH -->
+  <spi_write count="2" radix="16">11 20</spi_write>               <!-- 00187 L140 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00188 L141 SCRATCH bit5  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00189 L141 SCRATCH bit5  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00190 L142 SCRATCH -->
+  <spi_write count="2" radix="16">11 40</spi_write>               <!-- 00191 L142 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00192 L143 SCRATCH bit6  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00193 L143 SCRATCH bit6  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">10 00</spi_write>               <!-- 00194 L144 SCRATCH -->
+  <spi_write count="2" radix="16">11 80</spi_write>               <!-- 00195 L144 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00196 L145 SCRATCH bit7  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00197 L145 SCRATCH bit7  expect 0x80 mask 0xFF -->
+  <spi_write count="2" radix="16">10 01</spi_write>               <!-- 00198 L146 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00199 L146 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00200 L147 SCRATCH bit8  expect 0x01 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00201 L147 SCRATCH bit8  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 02</spi_write>               <!-- 00202 L148 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00203 L148 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00204 L149 SCRATCH bit9  expect 0x02 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00205 L149 SCRATCH bit9  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 04</spi_write>               <!-- 00206 L150 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00207 L150 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00208 L151 SCRATCH bit10  expect 0x04 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00209 L151 SCRATCH bit10  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 08</spi_write>               <!-- 00210 L152 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00211 L152 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00212 L153 SCRATCH bit11  expect 0x08 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00213 L153 SCRATCH bit11  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 10</spi_write>               <!-- 00214 L154 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00215 L154 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00216 L155 SCRATCH bit12  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00217 L155 SCRATCH bit12  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 20</spi_write>               <!-- 00218 L156 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00219 L156 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00220 L157 SCRATCH bit13  expect 0x20 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00221 L157 SCRATCH bit13  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 40</spi_write>               <!-- 00222 L158 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00223 L158 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00224 L159 SCRATCH bit14  expect 0x40 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00225 L159 SCRATCH bit14  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">10 80</spi_write>               <!-- 00226 L160 SCRATCH -->
+  <spi_write count="2" radix="16">11 00</spi_write>               <!-- 00227 L160 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00228 L161 SCRATCH bit15  expect 0x80 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00229 L161 SCRATCH bit15  expect 0x00 mask 0xFF -->
+</aardvark>

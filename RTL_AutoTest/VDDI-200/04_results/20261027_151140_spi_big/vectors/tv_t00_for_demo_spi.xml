@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-200 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=big -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T00 for_demo / 시연을 위한 임의 값 읽기/쓰기  <- 01_input/testvector/tv_t00_for_demo.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">80 00</spi_write>               <!-- 00001 L11 CHIP_ID ID 0xD200 (big: 0x00=D2, 0x01=00)  expect 0xD2 mask 0xFF -->
+  <spi_write count="2" radix="16">81 00</spi_write>               <!-- 00002 L11 CHIP_ID ID 0xD200 (big: 0x00=D2, 0x01=00)  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">82 00</spi_write>               <!-- 00003 L12 REV_ID REV 0x10  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">0A 5A</spi_write>               <!-- 00004 L15 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00005 L16 FG_R FG_R 0x5A  expect 0x5A mask 0xFF -->
+  <spi_write count="2" radix="16">0B A5</spi_write>               <!-- 00006 L17 FG_G -->
+  <spi_write count="2" radix="16">8B 00</spi_write>               <!-- 00007 L18 FG_G FG_G 0xA5  expect 0xA5 mask 0xFF -->
+  <spi_write count="2" radix="16">0C 3C</spi_write>               <!-- 00008 L21 FG_B -->
+  <spi_write count="2" radix="16">8C 00</spi_write>               <!-- 00009 L22 FG_B FG_B 0x3C (addr 7'h0C)  expect 0x3C mask 0xFF -->
+  <spi_write count="2" radix="16">09 05</spi_write>               <!-- 00010 L23 TPG_MODE -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00011 L24 TPG_MODE TPG_MODE 0x05 (addr 7'h09)  expect 0x05 mask 0x07 -->
+  <spi_write count="2" radix="16">10 12</spi_write>               <!-- 00012 L27 SCRATCH -->
+  <spi_write count="2" radix="16">11 34</spi_write>               <!-- 00013 L27 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00014 L28 SCRATCH SCRATCH 0x1234  expect 0x12 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00015 L28 SCRATCH SCRATCH 0x1234  expect 0x34 mask 0xFF -->
+  <spi_write count="2" radix="16">10 BE</spi_write>               <!-- 00016 L29 SCRATCH -->
+  <spi_write count="2" radix="16">11 EF</spi_write>               <!-- 00017 L29 SCRATCH -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00018 L30 SCRATCH SCRATCH 0xBEEF (addr 7'h10)  expect 0xBE mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00019 L30 SCRATCH SCRATCH 0xBEEF (addr 7'h10)  expect 0xEF mask 0xFF -->
+  <spi_write count="2" radix="16">04 02</spi_write>               <!-- 00020 L31 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 80</spi_write>               <!-- 00021 L31 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00022 L32 H_ACTIVE H_ACTIVE 640  expect 0x02 mask 0x07 -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00023 L32 H_ACTIVE H_ACTIVE 640  expect 0x80 mask 0xFF -->
+  <spi_write count="2" radix="16">06 FF</spi_write>               <!-- 00024 L35 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 FF</spi_write>               <!-- 00025 L35 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00026 L36 V_ACTIVE V_ACTIVE [10:0]만 저장  expect 0x07 mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00027 L36 V_ACTIVE V_ACTIVE [10:0]만 저장  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">0E FF</spi_write>               <!-- 00028 L37 PIX_CTRL -->
+  <spi_write count="2" radix="16">8E 00</spi_write>               <!-- 00029 L38 PIX_CTRL PIX_CTRL [1:0]만 저장  expect 0x03 mask 0xFF -->
+  <spi_write count="2" radix="16">02 FF</spi_write>               <!-- 00030 L41 REV_ID -->
+  <spi_write count="2" radix="16">82 00</spi_write>               <!-- 00031 L42 REV_ID REV_ID 쓰기 무시  expect 0x10 mask 0xFF -->
+  <spi_write count="2" radix="16">0A C3</spi_write>               <!-- 00032 L45 FG_R -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00033 L46 FG_R FG_R 0xC3  expect 0xC3 mask 0xFF -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00034 L50 reset -->
+  <spi_write count="2" radix="16">90 00</spi_write>               <!-- 00035 L51 SCRATCH SCRATCH reset 0x0000  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">91 00</spi_write>               <!-- 00036 L51 SCRATCH SCRATCH reset 0x0000  expect 0x00 mask 0xFF -->
+  <spi_write count="2" radix="16">8A 00</spi_write>               <!-- 00037 L52 FG_R FG_R reset 0xFF (addr 7'h0A)  expect 0xFF mask 0xFF -->
+</aardvark>

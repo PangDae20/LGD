@@ -1,0 +1,9 @@
+IP: VDDI-100
+인터페이스: SPI
+인가 대상 (For Demo): RTL 시뮬레이션 (iverilog, SPI)
+사양서 바이트 순서: big
+적용 바이트 순서: little
+테스트벡터 RTL: 7개 (01_input\testvector)
+변환 결과: 04_results/20261027_150544_spi_little/vectors/all_spi.xml
+엔디안 자동 감지: CHIP_ID 기대 0xD1A5, 실측 0xA5D1 -> 바이트가 뒤집혀 읽힘. 사양서(big)와 실제 칩이 다름 -> little-endian 으로 전환
+PASS: 139/139

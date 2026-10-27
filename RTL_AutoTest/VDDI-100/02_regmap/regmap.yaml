@@ -1,0 +1,37 @@
+# IP 레지스터맵: RTL에서 추출한 초안을 사양서와 대조해 확정한 것 (IP마다 별도 파일)
+ip:
+  name: VDDI-100
+  source_files:
+  - 01_input/testvector/tv_tasks.vh
+  - 01_input/testvector/vddi100_regmap.vh
+  i2c_addr: '0x3C'
+  byte_order: big
+  reg_src:
+    CHIP_ID: 01_input/testvector/vddi100_regmap.vh:4
+    REV_ID: 01_input/testvector/vddi100_regmap.vh:5
+    STATUS: 01_input/testvector/vddi100_regmap.vh:6
+    H_ACTIVE: 01_input/testvector/vddi100_regmap.vh:7
+    V_ACTIVE: 01_input/testvector/vddi100_regmap.vh:8
+    DISP_CTRL: 01_input/testvector/vddi100_regmap.vh:9
+    TPG_MODE: 01_input/testvector/vddi100_regmap.vh:10
+    FG_R: 01_input/testvector/vddi100_regmap.vh:11
+    FG_G: 01_input/testvector/vddi100_regmap.vh:12
+    FG_B: 01_input/testvector/vddi100_regmap.vh:13
+    CHECKER_SZ: 01_input/testvector/vddi100_regmap.vh:14
+    PIX_CTRL: 01_input/testvector/vddi100_regmap.vh:15
+    SCRATCH: 01_input/testvector/vddi100_regmap.vh:16
+  id_register: CHIP_ID
+registers:
+  - {name: CHIP_ID, addr: 0x00, width: 16, access: RO, reset: 0xD1A5, rw_mask: 0x0000, desc: "Device ID"}
+  - {name: REV_ID, addr: 0x02, width: 8, access: RO, reset: 0x10, rw_mask: 0x00, desc: "Silicon revision"}
+  - {name: STATUS, addr: 0x03, width: 8, access: RO, reset: 0x00, rw_mask: 0x00, desc: "[0] DISP_ACTIVE", volatile: true}
+  - {name: H_ACTIVE, addr: 0x04, width: 16, access: RW, reset: 0x0040, rw_mask: 0x07FF, desc: "[10:0] H active pixels"}
+  - {name: V_ACTIVE, addr: 0x06, width: 16, access: RW, reset: 0x0030, rw_mask: 0x07FF, desc: "[10:0] V active lines"}
+  - {name: DISP_CTRL, addr: 0x08, width: 8, access: RW, reset: 0x00, rw_mask: 0x03, desc: "[0] DISP_ON [1] TPG_EN"}
+  - {name: TPG_MODE, addr: 0x09, width: 8, access: RW, reset: 0x01, rw_mask: 0x07, desc: "[2:0] PATTERN"}
+  - {name: FG_R, addr: 0x0A, width: 8, access: RW, reset: 0xFF, rw_mask: 0xFF, desc: "Foreground R"}
+  - {name: FG_G, addr: 0x0B, width: 8, access: RW, reset: 0xFF, rw_mask: 0xFF, desc: "Foreground G"}
+  - {name: FG_B, addr: 0x0C, width: 8, access: RW, reset: 0xFF, rw_mask: 0xFF, desc: "Foreground B"}
+  - {name: CHECKER_SZ, addr: 0x0D, width: 8, access: RW, reset: 0x03, rw_mask: 0x07, desc: "[2:0] log2 cell size"}
+  - {name: PIX_CTRL, addr: 0x0E, width: 8, access: RW, reset: 0x00, rw_mask: 0x03, desc: "[0] INVERT [1] RB_SWAP"}
+  - {name: SCRATCH, addr: 0x10, width: 16, access: RW, reset: 0x0000, rw_mask: 0xFFFF, desc: "Scratch"}

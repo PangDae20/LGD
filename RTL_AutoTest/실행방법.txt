@@ -1,0 +1,39 @@
+﻿RTL Test Vector -> SPI/I2C Converter  실행 방법
+================================================================
+
+0. 압축 해제
+   - zip 파일을 오른쪽 클릭 -> [속성] -> 아래쪽 [차단 해제] 체크 -> 확인  (Windows, 있을 때만)
+   - [모두 압축 풀기]로 전체 해제 (압축 파일 안에서 바로 실행하지 말 것)
+   - 폴더가 쓰기 금지 위치면 바탕화면으로 복사
+
+1. 실행 (위에서부터 되는 방법 하나만)
+   [Windows]
+     (1) run_tool.bat 더블클릭
+         - "Windows의 PC 보호" 창이 뜨면 [추가 정보] -> [실행]
+     (2) (1)이 막히면: 폴더 주소창에 powershell 입력 후 Enter, 아래 입력
+         powershell -NoProfile -ExecutionPolicy Bypass -File .\run_tool.ps1
+     (3) 그래도 막히면: 명령 프롬프트(cmd)에서
+         py -3 tool\run_tool.py        또는   python tool\run_tool.py
+   [macOS / Linux]
+     (1) ./run_tool.sh
+     (2) 실행 권한 오류(Permission denied)면:  sh run_tool.sh   (또는 bash run_tool.sh)
+     (3) python3 tool/run_tool.py
+
+2. 런처가 하는 일 (자동)
+   - Python 찾기, 3.9 이상인지 확인 (없으면 Windows는 winget으로 사용자 영역 설치 제안)
+   - 폴더 쓰기 권한, 필수 파일, 스크립트 호환성 확인
+   - tkinter(GUI) 확인
+   - pyyaml, pillow 확인 -> 없으면 tool\.venv 가상환경을 만들어 설치 (관리자 권한 불필요)
+       가상환경이 안 되면 사용자 영역(--user), 그것도 막히면 tool\_pylibs 에 설치
+   - [For Demo] iverilog 확인 (없으면 Python 모델로 자동 대체, 변환 기능은 영향 없음)
+   - 결과 요약 출력 + tool\env_report.txt 저장 -> GUI 실행
+
+3. 옵션
+   --check-only   점검만 (자가 점검 18항목 포함)
+   --full         점검 + 자가 점검 후 GUI
+   --yes          설치 여부를 묻지 않고 진행
+   --cli          GUI 없이 명령줄 변환
+   예) run_tool.bat --check-only     /   sh run_tool.sh --check-only
+
+4. 시연 전 권장 순서
+   run_tool.bat --check-only  ->  요약이 모두 OK/WARN 인지 확인  ->  run_tool.bat

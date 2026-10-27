@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-100 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=big -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T05 RO 쓰기 보호  <- 01_input/testvector/tv_t05_ro_protect.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">00 2E</spi_write>               <!-- 00001 L9 CHIP_ID -->
+  <spi_write count="2" radix="16">01 5A</spi_write>               <!-- 00002 L9 CHIP_ID -->
+  <spi_write count="2" radix="16">80 00</spi_write>               <!-- 00003 L10 CHIP_ID write ~reset  expect 0xD1 mask 0xFF -->
+  <spi_write count="2" radix="16">81 00</spi_write>               <!-- 00004 L10 CHIP_ID write ~reset  expect 0xA5 mask 0xFF -->
+  <spi_write count="2" radix="16">02 EF</spi_write>               <!-- 00005 L11 REV_ID -->
+  <spi_write count="2" radix="16">82 00</spi_write>               <!-- 00006 L12 REV_ID write ~reset  expect 0x10 mask 0xFF -->
+</aardvark>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDDI-100 test vectors : Aardvark Control Center batch  interface=SPI  byte_order=little -->
+<aardvark>
+  <configure i2c="0" spi="1" gpio="0" tpower="1" pullups="0"/>
+  <spi_config polarity="rising/falling" phase="sample/setup" bitorder="msb" ss="active_low"/>
+  <spi_bitrate khz="1000"/>
+  <!-- SPI Mode 0, MSB first, frame = [R/W|ADDR(7)] [DATA(8)] -->
+  <!-- ## T06 예약 비트 확인  <- 01_input/testvector/tv_t06_reserved_bits.v -->
+  <!-- chip_reset : RST_N low -> high (board GPIO / FPGA) -->
+  <sleep ms="10"/>                                                <!-- 00000 L8 reset -->
+  <spi_write count="2" radix="16">04 FF</spi_write>               <!-- 00001 L9 H_ACTIVE -->
+  <spi_write count="2" radix="16">05 FF</spi_write>               <!-- 00002 L9 H_ACTIVE -->
+  <spi_write count="2" radix="16">84 00</spi_write>               <!-- 00003 L10 H_ACTIVE write all-1  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">85 00</spi_write>               <!-- 00004 L10 H_ACTIVE write all-1  expect 0x07 mask 0xFF -->
+  <spi_write count="2" radix="16">06 FF</spi_write>               <!-- 00005 L11 V_ACTIVE -->
+  <spi_write count="2" radix="16">07 FF</spi_write>               <!-- 00006 L11 V_ACTIVE -->
+  <spi_write count="2" radix="16">86 00</spi_write>               <!-- 00007 L12 V_ACTIVE write all-1  expect 0xFF mask 0xFF -->
+  <spi_write count="2" radix="16">87 00</spi_write>               <!-- 00008 L12 V_ACTIVE write all-1  expect 0x07 mask 0xFF -->
+  <spi_write count="2" radix="16">08 FF</spi_write>               <!-- 00009 L13 DISP_CTRL -->
+  <spi_write count="2" radix="16">88 00</spi_write>               <!-- 00010 L14 DISP_CTRL write all-1  expect 0x03 mask 0xFF -->
+  <spi_write count="2" radix="16">09 FF</spi_write>               <!-- 00011 L15 TPG_MODE -->
+  <spi_write count="2" radix="16">89 00</spi_write>               <!-- 00012 L16 TPG_MODE write all-1  expect 0x07 mask 0xFF -->
+  <spi_write count="2" radix="16">0D FF</spi_write>               <!-- 00013 L17 CHECKER_SZ -->
+  <spi_write count="2" radix="16">8D 00</spi_write>               <!-- 00014 L18 CHECKER_SZ write all-1  expect 0x07 mask 0xFF -->
+  <spi_write count="2" radix="16">0E FF</spi_write>               <!-- 00015 L19 PIX_CTRL -->
+  <spi_write count="2" radix="16">8E 00</spi_write>               <!-- 00016 L20 PIX_CTRL write all-1  expect 0x03 mask 0xFF -->
+</aardvark>

@@ -1,0 +1,4 @@
+# 런처가 만드는 파일 (배포 시 제외 가능)
+.venv/
+_pylibs/
+env_report.txt

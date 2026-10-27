@@ -1,0 +1,425 @@
+# T01 Chip ID / 바이트 순서 확인  <- 01_input/testvector/tv_t01_id_check.v
+RST
+R 00       # CHIP_ID ID
+R 01       # CHIP_ID ID
+# T02 리셋값 확인  <- 01_input/testvector/tv_t02_reset_check.v
+RST
+R 00       # CHIP_ID reset
+R 01       # CHIP_ID reset
+R 02       # REV_ID reset
+R 03       # STATUS reset
+R 04       # H_ACTIVE reset
+R 05       # H_ACTIVE reset
+R 06       # V_ACTIVE reset
+R 07       # V_ACTIVE reset
+R 08       # DISP_CTRL reset
+R 09       # TPG_MODE reset
+R 0A       # FG_R reset
+R 0B       # FG_G reset
+R 0C       # FG_B reset
+R 0D       # CHECKER_SZ reset
+R 0E       # PIX_CTRL reset
+R 10       # SCRATCH reset
+R 11       # SCRATCH reset
+# T03 RW 패턴 쓰기/읽기  <- 01_input/testvector/tv_t03_rw_pattern.v
+RST
+W 04 00    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE pat=0x0000
+R 05       # H_ACTIVE pat=0x0000
+W 06 00    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE pat=0x0000
+R 07       # V_ACTIVE pat=0x0000
+W 08 00    # DISP_CTRL
+R 08       # DISP_CTRL pat=0x00
+W 09 00    # TPG_MODE
+R 09       # TPG_MODE pat=0x00
+W 0A 00    # FG_R
+R 0A       # FG_R pat=0x00
+W 0B 00    # FG_G
+R 0B       # FG_G pat=0x00
+W 0C 00    # FG_B
+R 0C       # FG_B pat=0x00
+W 0D 00    # CHECKER_SZ
+R 0D       # CHECKER_SZ pat=0x00
+W 0E 00    # PIX_CTRL
+R 0E       # PIX_CTRL pat=0x00
+W 10 00    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH pat=0x0000
+R 11       # SCRATCH pat=0x0000
+RST
+W 04 FF    # H_ACTIVE
+W 05 FF    # H_ACTIVE
+R 04       # H_ACTIVE pat=0xFFFF
+R 05       # H_ACTIVE pat=0xFFFF
+W 06 FF    # V_ACTIVE
+W 07 FF    # V_ACTIVE
+R 06       # V_ACTIVE pat=0xFFFF
+R 07       # V_ACTIVE pat=0xFFFF
+W 08 FF    # DISP_CTRL
+R 08       # DISP_CTRL pat=0xFF
+W 09 FF    # TPG_MODE
+R 09       # TPG_MODE pat=0xFF
+W 0A FF    # FG_R
+R 0A       # FG_R pat=0xFF
+W 0B FF    # FG_G
+R 0B       # FG_G pat=0xFF
+W 0C FF    # FG_B
+R 0C       # FG_B pat=0xFF
+W 0D FF    # CHECKER_SZ
+R 0D       # CHECKER_SZ pat=0xFF
+W 0E FF    # PIX_CTRL
+R 0E       # PIX_CTRL pat=0xFF
+W 10 FF    # SCRATCH
+W 11 FF    # SCRATCH
+R 10       # SCRATCH pat=0xFFFF
+R 11       # SCRATCH pat=0xFFFF
+RST
+W 04 55    # H_ACTIVE
+W 05 55    # H_ACTIVE
+R 04       # H_ACTIVE pat=0x5555
+R 05       # H_ACTIVE pat=0x5555
+W 06 55    # V_ACTIVE
+W 07 55    # V_ACTIVE
+R 06       # V_ACTIVE pat=0x5555
+R 07       # V_ACTIVE pat=0x5555
+W 08 55    # DISP_CTRL
+R 08       # DISP_CTRL pat=0x55
+W 09 55    # TPG_MODE
+R 09       # TPG_MODE pat=0x55
+W 0A 55    # FG_R
+R 0A       # FG_R pat=0x55
+W 0B 55    # FG_G
+R 0B       # FG_G pat=0x55
+W 0C 55    # FG_B
+R 0C       # FG_B pat=0x55
+W 0D 55    # CHECKER_SZ
+R 0D       # CHECKER_SZ pat=0x55
+W 0E 55    # PIX_CTRL
+R 0E       # PIX_CTRL pat=0x55
+W 10 55    # SCRATCH
+W 11 55    # SCRATCH
+R 10       # SCRATCH pat=0x5555
+R 11       # SCRATCH pat=0x5555
+RST
+W 04 AA    # H_ACTIVE
+W 05 AA    # H_ACTIVE
+R 04       # H_ACTIVE pat=0xAAAA
+R 05       # H_ACTIVE pat=0xAAAA
+W 06 AA    # V_ACTIVE
+W 07 AA    # V_ACTIVE
+R 06       # V_ACTIVE pat=0xAAAA
+R 07       # V_ACTIVE pat=0xAAAA
+W 08 AA    # DISP_CTRL
+R 08       # DISP_CTRL pat=0xAA
+W 09 AA    # TPG_MODE
+R 09       # TPG_MODE pat=0xAA
+W 0A AA    # FG_R
+R 0A       # FG_R pat=0xAA
+W 0B AA    # FG_G
+R 0B       # FG_G pat=0xAA
+W 0C AA    # FG_B
+R 0C       # FG_B pat=0xAA
+W 0D AA    # CHECKER_SZ
+R 0D       # CHECKER_SZ pat=0xAA
+W 0E AA    # PIX_CTRL
+R 0E       # PIX_CTRL pat=0xAA
+W 10 AA    # SCRATCH
+W 11 AA    # SCRATCH
+R 10       # SCRATCH pat=0xAAAA
+R 11       # SCRATCH pat=0xAAAA
+# T04 Walking-1  <- 01_input/testvector/tv_t04_walking_one.v
+RST
+W 04 01    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit0
+R 05       # H_ACTIVE bit0
+W 04 02    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit1
+R 05       # H_ACTIVE bit1
+W 04 04    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit2
+R 05       # H_ACTIVE bit2
+W 04 08    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit3
+R 05       # H_ACTIVE bit3
+W 04 10    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit4
+R 05       # H_ACTIVE bit4
+W 04 20    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit5
+R 05       # H_ACTIVE bit5
+W 04 40    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit6
+R 05       # H_ACTIVE bit6
+W 04 80    # H_ACTIVE
+W 05 00    # H_ACTIVE
+R 04       # H_ACTIVE bit7
+R 05       # H_ACTIVE bit7
+W 04 00    # H_ACTIVE
+W 05 01    # H_ACTIVE
+R 04       # H_ACTIVE bit8
+R 05       # H_ACTIVE bit8
+W 04 00    # H_ACTIVE
+W 05 02    # H_ACTIVE
+R 04       # H_ACTIVE bit9
+R 05       # H_ACTIVE bit9
+W 04 00    # H_ACTIVE
+W 05 04    # H_ACTIVE
+R 04       # H_ACTIVE bit10
+R 05       # H_ACTIVE bit10
+RST
+W 06 01    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit0
+R 07       # V_ACTIVE bit0
+W 06 02    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit1
+R 07       # V_ACTIVE bit1
+W 06 04    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit2
+R 07       # V_ACTIVE bit2
+W 06 08    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit3
+R 07       # V_ACTIVE bit3
+W 06 10    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit4
+R 07       # V_ACTIVE bit4
+W 06 20    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit5
+R 07       # V_ACTIVE bit5
+W 06 40    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit6
+R 07       # V_ACTIVE bit6
+W 06 80    # V_ACTIVE
+W 07 00    # V_ACTIVE
+R 06       # V_ACTIVE bit7
+R 07       # V_ACTIVE bit7
+W 06 00    # V_ACTIVE
+W 07 01    # V_ACTIVE
+R 06       # V_ACTIVE bit8
+R 07       # V_ACTIVE bit8
+W 06 00    # V_ACTIVE
+W 07 02    # V_ACTIVE
+R 06       # V_ACTIVE bit9
+R 07       # V_ACTIVE bit9
+W 06 00    # V_ACTIVE
+W 07 04    # V_ACTIVE
+R 06       # V_ACTIVE bit10
+R 07       # V_ACTIVE bit10
+RST
+W 08 01    # DISP_CTRL
+R 08       # DISP_CTRL bit0
+W 08 02    # DISP_CTRL
+R 08       # DISP_CTRL bit1
+RST
+W 09 01    # TPG_MODE
+R 09       # TPG_MODE bit0
+W 09 02    # TPG_MODE
+R 09       # TPG_MODE bit1
+W 09 04    # TPG_MODE
+R 09       # TPG_MODE bit2
+RST
+W 0A 01    # FG_R
+R 0A       # FG_R bit0
+W 0A 02    # FG_R
+R 0A       # FG_R bit1
+W 0A 04    # FG_R
+R 0A       # FG_R bit2
+W 0A 08    # FG_R
+R 0A       # FG_R bit3
+W 0A 10    # FG_R
+R 0A       # FG_R bit4
+W 0A 20    # FG_R
+R 0A       # FG_R bit5
+W 0A 40    # FG_R
+R 0A       # FG_R bit6
+W 0A 80    # FG_R
+R 0A       # FG_R bit7
+RST
+W 0B 01    # FG_G
+R 0B       # FG_G bit0
+W 0B 02    # FG_G
+R 0B       # FG_G bit1
+W 0B 04    # FG_G
+R 0B       # FG_G bit2
+W 0B 08    # FG_G
+R 0B       # FG_G bit3
+W 0B 10    # FG_G
+R 0B       # FG_G bit4
+W 0B 20    # FG_G
+R 0B       # FG_G bit5
+W 0B 40    # FG_G
+R 0B       # FG_G bit6
+W 0B 80    # FG_G
+R 0B       # FG_G bit7
+RST
+W 0C 01    # FG_B
+R 0C       # FG_B bit0
+W 0C 02    # FG_B
+R 0C       # FG_B bit1
+W 0C 04    # FG_B
+R 0C       # FG_B bit2
+W 0C 08    # FG_B
+R 0C       # FG_B bit3
+W 0C 10    # FG_B
+R 0C       # FG_B bit4
+W 0C 20    # FG_B
+R 0C       # FG_B bit5
+W 0C 40    # FG_B
+R 0C       # FG_B bit6
+W 0C 80    # FG_B
+R 0C       # FG_B bit7
+RST
+W 0D 01    # CHECKER_SZ
+R 0D       # CHECKER_SZ bit0
+W 0D 02    # CHECKER_SZ
+R 0D       # CHECKER_SZ bit1
+W 0D 04    # CHECKER_SZ
+R 0D       # CHECKER_SZ bit2
+RST
+W 0E 01    # PIX_CTRL
+R 0E       # PIX_CTRL bit0
+W 0E 02    # PIX_CTRL
+R 0E       # PIX_CTRL bit1
+RST
+W 10 01    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit0
+R 11       # SCRATCH bit0
+W 10 02    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit1
+R 11       # SCRATCH bit1
+W 10 04    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit2
+R 11       # SCRATCH bit2
+W 10 08    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit3
+R 11       # SCRATCH bit3
+W 10 10    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit4
+R 11       # SCRATCH bit4
+W 10 20    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit5
+R 11       # SCRATCH bit5
+W 10 40    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit6
+R 11       # SCRATCH bit6
+W 10 80    # SCRATCH
+W 11 00    # SCRATCH
+R 10       # SCRATCH bit7
+R 11       # SCRATCH bit7
+W 10 00    # SCRATCH
+W 11 01    # SCRATCH
+R 10       # SCRATCH bit8
+R 11       # SCRATCH bit8
+W 10 00    # SCRATCH
+W 11 02    # SCRATCH
+R 10       # SCRATCH bit9
+R 11       # SCRATCH bit9
+W 10 00    # SCRATCH
+W 11 04    # SCRATCH
+R 10       # SCRATCH bit10
+R 11       # SCRATCH bit10
+W 10 00    # SCRATCH
+W 11 08    # SCRATCH
+R 10       # SCRATCH bit11
+R 11       # SCRATCH bit11
+W 10 00    # SCRATCH
+W 11 10    # SCRATCH
+R 10       # SCRATCH bit12
+R 11       # SCRATCH bit12
+W 10 00    # SCRATCH
+W 11 20    # SCRATCH
+R 10       # SCRATCH bit13
+R 11       # SCRATCH bit13
+W 10 00    # SCRATCH
+W 11 40    # SCRATCH
+R 10       # SCRATCH bit14
+R 11       # SCRATCH bit14
+W 10 00    # SCRATCH
+W 11 80    # SCRATCH
+R 10       # SCRATCH bit15
+R 11       # SCRATCH bit15
+# T05 RO 쓰기 보호  <- 01_input/testvector/tv_t05_ro_protect.v
+RST
+W 00 5A    # CHIP_ID
+W 01 2E    # CHIP_ID
+R 00       # CHIP_ID write ~reset
+R 01       # CHIP_ID write ~reset
+W 02 EF    # REV_ID
+R 02       # REV_ID write ~reset
+# T06 예약 비트 확인  <- 01_input/testvector/tv_t06_reserved_bits.v
+RST
+W 04 FF    # H_ACTIVE
+W 05 FF    # H_ACTIVE
+R 04       # H_ACTIVE write all-1
+R 05       # H_ACTIVE write all-1
+W 06 FF    # V_ACTIVE
+W 07 FF    # V_ACTIVE
+R 06       # V_ACTIVE write all-1
+R 07       # V_ACTIVE write all-1
+W 08 FF    # DISP_CTRL
+R 08       # DISP_CTRL write all-1
+W 09 FF    # TPG_MODE
+R 09       # TPG_MODE write all-1
+W 0D FF    # CHECKER_SZ
+R 0D       # CHECKER_SZ write all-1
+W 0E FF    # PIX_CTRL
+R 0E       # PIX_CTRL write all-1
+# T07 테스트패턴 출력 비교  <- 01_input/testvector/tv_t07_functional.v
+RST
+W 09 01    # TPG_MODE
+W 08 03    # DISP_CTRL
+F          # colorbar
+RST
+W 09 02    # TPG_MODE
+W 0A FF    # FG_R
+W 0B 00    # FG_G
+W 0C 00    # FG_B
+W 08 03    # DISP_CTRL
+F          # ramp_red
+RST
+W 09 03    # TPG_MODE
+W 0D 02    # CHECKER_SZ
+W 0A 20    # FG_R
+W 0B C0    # FG_G
+W 0C FF    # FG_B
+W 08 03    # DISP_CTRL
+F          # checker_4px
+RST
+W 09 01    # TPG_MODE
+W 0E 03    # PIX_CTRL
+W 08 03    # DISP_CTRL
+F          # colorbar_swap_inv
+RST
+W 09 00    # TPG_MODE
+W 04 60    # H_ACTIVE
+W 05 00    # H_ACTIVE
+W 06 36    # V_ACTIVE
+W 07 00    # V_ACTIVE
+W 0A 40    # FG_R
+W 0B 80    # FG_G
+W 0C C0    # FG_B
+W 08 03    # DISP_CTRL
+F          # solid_96x54

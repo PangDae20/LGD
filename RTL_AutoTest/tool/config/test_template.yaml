@@ -1,0 +1,37 @@
+# 테스트 템플릿 (업무에서 고정적으로 쓰던 시험 항목 구성을 일반화한 형태)
+# 레지스터맵만 바꾸면 같은 템플릿으로 다른 IP의 테스트벡터가 생성됨
+tests:
+  - id: T01
+    type: id_check          # Chip ID 확인 + 엔디안 불일치 감지
+    desc: "Chip ID / 바이트 순서 확인"
+
+  - id: T02
+    type: reset_check       # 전 레지스터 리셋값 확인
+    desc: "리셋값 확인"
+
+  - id: T03
+    type: rw_pattern        # RW 레지스터 패턴 쓰기/읽기
+    desc: "RW 패턴 쓰기/읽기"
+    patterns: [0x0000, 0xFFFF, 0x5555, 0xAAAA]
+
+  - id: T04
+    type: walking_one       # 비트 하나씩 1 → 비트 간 단락/고착 확인
+    desc: "Walking-1"
+
+  - id: T05
+    type: ro_protect        # RO 레지스터 쓰기 무시 확인
+    desc: "RO 쓰기 보호"
+
+  - id: T06
+    type: reserved_bits     # 예약 비트 0 유지 확인
+    desc: "예약 비트 확인"
+
+  - id: T07
+    type: functional        # 레지스터 설정 → 화면 출력 → 기준 모델과 픽셀 단위 비교
+    desc: "테스트패턴 출력 비교"
+    scenarios:
+      - {name: colorbar,      regs: {DISP_CTRL: 0x03, TPG_MODE: 1}}
+      - {name: ramp_red,      regs: {DISP_CTRL: 0x03, TPG_MODE: 2, FG_R: 0xFF, FG_G: 0x00, FG_B: 0x00}}
+      - {name: checker_4px,   regs: {DISP_CTRL: 0x03, TPG_MODE: 3, CHECKER_SZ: 2, FG_R: 0x20, FG_G: 0xC0, FG_B: 0xFF}}
+      - {name: colorbar_swap_inv, regs: {DISP_CTRL: 0x03, TPG_MODE: 1, PIX_CTRL: 0x03}}
+      - {name: solid_96x54,   regs: {DISP_CTRL: 0x03, TPG_MODE: 0, H_ACTIVE: 96, V_ACTIVE: 54, FG_R: 0x40, FG_G: 0x80, FG_B: 0xC0}}
